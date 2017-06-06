@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
     modulePrefix: 'shuffl-app',
     environment: environment,
@@ -20,6 +20,32 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    'ember-full-story': {
+      debug: false, // default
+      enabledEnvironments: ['production', 'staging'], // default
+      org: '50CKG' // required, no default
+    },
+    googleFonts: [
+      'Roboto:200,300,400,500,700'
+    ],
+    metricAdapters: [{
+      name: 'GoogleAnalytics',
+      environments: ['staging', 'production'],
+      config: {
+        id: 'UA-100428483-1',
+        // Use `analytics_debug.js` in development
+        debug: environment === 'development',
+        // Use verbose tracing of GA events
+        trace: environment === 'development',
+        // Ensure development env hits aren't sent to GA
+        sendHitTask: environment !== 'development'
+      }
+    }],
+    'g-map': {
+      // exclude: true,
+      key: 'AIzaSyAeCT0ZWtmcXH4aLJZn1pYHHdhYD-woltE',
+      // client: 'gme-your-unique-google-client-id',
     }
   };
 
@@ -29,6 +55,9 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+  }
+
+  if (environment === 'staging') {
   }
 
   if (environment === 'test') {
