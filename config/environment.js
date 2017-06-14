@@ -46,6 +46,19 @@ module.exports = function (environment) {
       // exclude: true,
       key: 'AIzaSyAeCT0ZWtmcXH4aLJZn1pYHHdhYD-woltE',
       // client: 'gme-your-unique-google-client-id',
+    },
+    shuffl: {
+      api: {
+        host: 'http://localhost:3000',
+        namespace: '',
+      },
+    },
+    'ember-cli-mirage': {
+      enabled: false,
+    },
+    'open-table': {
+      host: 'https://opentable.herokuapp.com',
+      namespace: 'api'
     }
   };
 
@@ -57,7 +70,18 @@ module.exports = function (environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
+  if (environment === 'mirage') {
+    ENV.shuffl.api.host = 'http://localhost:4200';
+
+    ENV['ember-cli-mirage'].enabled = true;
+  }
+
+  if (environment === 'staging-local') {
+    ENV.shuffl.api.host = 'https://xstaging-api.shuffllunch.com';
+  }
+
   if (environment === 'staging') {
+    ENV.shuffl.api.host = 'https://xstaging-api.shuffllunch.com';
   }
 
   if (environment === 'test') {
